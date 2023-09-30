@@ -185,7 +185,7 @@ class _GroupInfoState extends State<GroupInfo> {
             );
           }
         } else {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(
               color: Colors.orange,
             ),

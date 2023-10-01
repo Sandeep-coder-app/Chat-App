@@ -131,6 +131,7 @@ class _SearchPageState extends State<SearchPage> {
       itemCount: searchSnapshot!.docs.length,
       itemBuilder: (context, index) {
         return GroupTile(
+          groupName
           userName,
           searchSnapshot!.docs[index]['groupId'],
         );

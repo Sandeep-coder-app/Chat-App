@@ -1,6 +1,8 @@
 import 'package:chat_app/helper/helper_fun.dart';
+import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/services/database_services.dart';
 import 'package:chat_app/widget/group_title.dart';
+import 'package:chat_app/widget/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -130,12 +132,84 @@ class _SearchPageState extends State<SearchPage> {
       shrinkWrap: true,
       itemCount: searchSnapshot!.docs.length,
       itemBuilder: (context, index) {
-        return GroupTile(
-          groupName
+        return groupTile(
           userName,
           searchSnapshot!.docs[index]['groupId'],
+          searchSnapshot!.docs[index]['groupName'],
+          searchSnapshot!.docs[index]['admin'],
         );
       },
     )
+    : Container();
+  }
+
+  joinedOrNot(String userName, String groupId, String groupName, String admin) async {
+    await DatabaseService(uid: user!.uid)
+    .isUserJoined(groupName, groupId, userName)
+    .then((value) {
+      setState(() {
+        isJoined = value;
+      });
+    });
+  }
+
+  Widget groupTile(String userName, String groupId, String groupName, String admin) {
+    joinedOrNot(userName, groupId, groupName, admin);
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      leading: CircleAvatar(
+        radius: 30,
+        backgroundColor: Colors.orange,
+        child: Text(
+          groupName.substring(0,1).toUpperCase(),
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+      title: Text(groupName, style: const TextStyle(fontWeight: FontWeight.w600)),
+      subtitle: Text("Admin: ${getName(admin)}"),
+      trailing: InkWell(
+        onTap: () async{
+          await DatabaseService(uid: user!.uid)
+          .toggleGroupJoin(groupId, userName, groupName);
+          if(isJoined) {
+            setState(() {
+              isJoined = !isJoined;
+            });
+            Toast().toastMessage("Successfully joined he group");
+            Future.delayed(const Duration(seconds: 2), () {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) 
+              => ChatPage(groupId: groupId, groupName: groupName, userName: userName)));
+            });
+          } else {
+            setState(() {
+              isJoined = !isJoined;
+              Toast().toastMessage("Left the group $groupName");
+            });
+          }
+        },
+        child: isJoined
+        ? Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.black,
+            border: Border.all(color: Colors.white, width: 1),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: const Text(
+            "Joined",
+            style: TextStyle(color: Colors.white),
+          ),
+        )
+        : Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.orange,
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: const Text("Join Now",
+          style: TextStyle(color: Colors.white),),
+        )
+      ),
+    );
   }
 }

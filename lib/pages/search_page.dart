@@ -1,7 +1,6 @@
 import 'package:chat_app/helper/helper_fun.dart';
 import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/services/database_services.dart';
-import 'package:chat_app/widget/group_title.dart';
 import 'package:chat_app/widget/toast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,7 +112,7 @@ class _SearchPageState extends State<SearchPage> {
   initiateSearchMethod() async {
     if(searchController.text.isNotEmpty) {
       setState(() {
-        isJoined = true;
+        isLoading = true;
       });
       await DatabaseService().searchByName(searchController.text)
       .then((snapshot) {

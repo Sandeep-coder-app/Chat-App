@@ -177,7 +177,7 @@ class _SearchPageState extends State<SearchPage> {
             });
             Toast().toastMessage("Successfully joined he group");
             Future.delayed(const Duration(seconds: 2), () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) 
+              Navigator.push(context, MaterialPageRoute(builder: (context) 
               => ChatPage(groupId: groupId, groupName: groupName, userName: userName)));
             });
           } else {

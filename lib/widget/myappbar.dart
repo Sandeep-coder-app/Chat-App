@@ -1,11 +1,14 @@
+
+
+import 'package:chat_app/pages/search_page.dart';
 import 'package:flutter/material.dart';
 
-AppBar MyAppBar() {
+AppBar MyAppBar(BuildContext context) {
   return AppBar(
             actions: [
           IconButton(
             onPressed: () {
-              
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SearchPage()));
             },
             icon: const Icon(Icons.search,
             color: Colors.white,),

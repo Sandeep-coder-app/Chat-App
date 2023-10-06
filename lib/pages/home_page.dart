@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    gettingUserData();
   }
 
   // String manipulation
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: MyAppBar(context),
       drawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 50),
@@ -92,21 +93,19 @@ class _HomePageState extends State<HomePage> {
               height: 2,
             ),
             ListTile(
-              onTap: () {
-                
-              },
+              onTap: () {},
               selectedColor: Colors.orange,
               selected: true,
               contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               leading: const Icon(Icons.group),
               title: const Text(
-                "ChatApp",
+                "Groups",
                 style: TextStyle(color: Colors.black),
               ),
             ),
             ListTile(
               onTap: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage(
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(
                   userName: userName,
                   email: email,
                 )));
@@ -130,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                       actions: [
                         IconButton(
                           onPressed: () {
-                            
+                            Navigator.pop(context);
                           },
                           icon: const Icon(
                             Icons.cancel,
@@ -182,7 +181,7 @@ class _HomePageState extends State<HomePage> {
   groupList() {
     return StreamBuilder(
       stream: groups,
-      builder: (context,AsyncSnapshot snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         //make some checks
         if(snapshot.hasData) {
           if(snapshot.data['groups'] != null) {

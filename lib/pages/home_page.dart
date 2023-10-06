@@ -1,5 +1,6 @@
 import 'package:chat_app/auth/login_page.dart';
 import 'package:chat_app/helper/helper_fun.dart';
+import 'package:chat_app/pages/Profile_page.dart';
 import 'package:chat_app/services/auth_services.dart';
 import 'package:chat_app/services/database_services.dart';
 import 'package:chat_app/widget/group_title.dart';
@@ -105,7 +106,10 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               onTap: () {
-                
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage(
+                  userName: userName,
+                  email: email,
+                )));
               },
               contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               leading: const Icon(Icons.group),

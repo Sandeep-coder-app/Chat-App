@@ -181,7 +181,7 @@ class _SearchPageState extends State<SearchPage> {
             });
           } else {
             setState(() {
-              isJoined = !isJoined;
+              isJoined = isJoined;
               Toast().toastMessage("Left the group $groupName");
             });
           }

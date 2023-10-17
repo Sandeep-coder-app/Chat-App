@@ -1,4 +1,7 @@
+import 'package:chat_app/Helper/helper_func.dart';
 import 'package:chat_app/Pages/home_page.dart';
+import 'package:chat_app/Widget/constants.dart';
+import 'package:chat_app/auth/login_page.dart';
 import 'package:chat_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -8,21 +11,45 @@ Future<void> main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isSignedIn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getUserLoggedInStatus();
+  }
+
+  getUserLoggedInStatus() async {
+    await Helper.getUserLoggedInStatus().then((value) {
+      if(value != null) {
+        setState(() {
+          isSignedIn = value;
+        });
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Chat App",
-      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: primaryColor,
+        scaffoldBackgroundColor: Colors.white,
       ),
-      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+      home: isSignedIn ? const HomePage() : const LoginPage(),
     );
   }
 }

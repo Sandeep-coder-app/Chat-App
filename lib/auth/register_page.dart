@@ -1,5 +1,9 @@
+import 'package:chat_app/Helper/helper_func.dart';
 import 'package:chat_app/Widget/constants.dart';
+import 'package:chat_app/Widget/toast.dart';
+import 'package:chat_app/auth/login_page.dart';
 import 'package:chat_app/service/auth_service.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -149,12 +153,44 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text.rich(textSpan)
+                Text.rich(TextSpan(
+                  text: "Already have an account? ",
+                  style: const TextStyle(
+                    color: Colors.black, fontSize: 14,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: "Login now",
+                      style: const TextStyle(
+                        color: Colors.black,
+                        decoration: TextDecoration.underline
+                      ),
+                      recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                      }
+                    )
+                  ],
+                ))
               ],
             ),
           ),
         ),
       ),
     );
+  }
+  register() async {
+    if(formKey.currentState!.validate()) {
+      await authService.registerUserWithEmailandPassword(fullName, email, password).then((value) async {
+        if(value == true) {
+          // Saving the shared preference state
+          await Helper.saveUserLoggedInStatus(true);
+          await Helper.saveUserEmailSF(email);
+          await Helper.saveUserNameSF(fullName);
+        } else {
+          flutterToast(value);
+        }
+      });
+    }
   }
 }

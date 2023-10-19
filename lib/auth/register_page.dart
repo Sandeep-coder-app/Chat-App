@@ -1,3 +1,4 @@
+import 'package:chat_app/Widget/constants.dart';
 import 'package:chat_app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,118 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Image.asset("assets/chat1.png")
+                Image.asset("assets/chat1.png"),
+                const SizedBox(height: 20),
+                    TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Name",
+                    hintText: "Enter your Full Name",
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: primaryColor,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide:const BorderSide(width: 3, color: Colors.black, style: BorderStyle.solid)
+                    )
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      fullName = value;
+                    });
+                  },
+
+                  //check the validation
+                  validator: (value) {
+                    if(value!.isNotEmpty) {
+                      return null;
+                    } else {
+                      return "Name cannot be empty";
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                    TextFormField(
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    hintText: "Enter your Email",
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: primaryColor,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide:const BorderSide(width: 3, color: Colors.black, style: BorderStyle.solid)
+                    )
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      email = value;
+                    });
+                  },
+
+                  //check the validation
+                  validator: (value) {
+                    return RegExp( r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(value!)
+                    ? null
+                    : "Please enter a valid email";
+                  },
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Password",
+                    hintText: "Enter your Password",
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: primaryColor,
+                    )
+                  ),
+                  validator: (value) {
+                    if(value!.length < 6) {
+                      return "Password must be at least 6 characters";
+                    } else {
+                      return null;
+                    }
+                  },
+
+                  onChanged: (value) {
+                    setState(() {
+                      password = value;
+                    });
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                   GestureDetector(
+                  onTap: () {
+                    register();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: primaryColor
+                    ),
+                    child: const Text(
+                      "Register",
+                      textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text.rich(textSpan)
               ],
             ),
           ),

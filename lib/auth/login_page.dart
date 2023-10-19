@@ -1,5 +1,13 @@
+import 'package:chat_app/Helper/helper_func.dart';
+import 'package:chat_app/Pages/home_page.dart';
 import 'package:chat_app/Widget/constants.dart';
+import 'package:chat_app/Widget/toast.dart';
+import 'package:chat_app/auth/register_page.dart';
 import 'package:chat_app/service/auth_service.dart';
+import 'package:chat_app/service/database_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -98,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    
+                    login();
                   },
                   child: Container(
                     alignment: Alignment.center,
@@ -118,12 +126,47 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
 
-                
+                Text.rich(TextSpan(
+                  text: "Don't have an account? ",
+                  style: const TextStyle(
+                    color: Colors.black, fontSize: 14
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: "Register here",
+                      style: const TextStyle(
+                        color: Colors.black,
+                        decoration: TextDecoration.underline
+                      ),
+                      recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                      }
+                    )
+                  ],
+                ))
               ],
             ),
           ),
         ),
       ),
     );
+  }
+  login() async {
+    if(formKey.currentState!.validate()) {
+      await authService.loginWithUserNameandPassword(email, password).then((value) async {
+        if(value == true) {
+          QuerySnapshot snapshot = await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid).gettingUserData(email);
+
+          // Saving the value to our shared preferences
+          await Helper.saveUserLoggedInStatus(true);
+          await Helper.saveUserEmailSF(email);
+          await Helper.saveUserNameSF(snapshot.docs[0]['fullName']);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+        } else {
+          flutterToast(value);
+        }
+      });
+    }
   }
 }

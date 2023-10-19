@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     labelText: "Email",
                     hintText: "Enter your Email",
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.email,
                       color: primaryColor,
                     ),
@@ -77,13 +77,13 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     labelText: "Password",
                     hintText: "Enter your Password",
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.lock,
                       color: primaryColor,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(width: 3, color: Colors.black, style: BorderStyle.solid),
+                      borderSide: const BorderSide(width: 3, color: Colors.black, style: BorderStyle.solid),
                     )
                   ),
 
@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
                       }
                     )
                   ],
@@ -162,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
           await Helper.saveUserLoggedInStatus(true);
           await Helper.saveUserEmailSF(email);
           await Helper.saveUserNameSF(snapshot.docs[0]['fullName']);
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
         } else {
           flutterToast(value);
         }

@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: InputDecoration(
                     labelText: "Name",
                     hintText: "Enter your Full Name",
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.email,
                       color: primaryColor,
                     ),
@@ -79,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: InputDecoration(
                     labelText: "Email",
                     hintText: "Enter your Email",
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.email,
                       color: primaryColor,
                     ),
@@ -107,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 TextFormField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Password",
                     hintText: "Enter your Password",
                     prefixIcon: Icon(
@@ -167,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                       }
                     )
                   ],

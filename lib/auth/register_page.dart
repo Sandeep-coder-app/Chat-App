@@ -42,7 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Image.asset("assets/chat1.png"),
+                Image.asset("assets/chat1.png",width: 300, height: 300),
                 const SizedBox(height: 20),
                     TextFormField(
                   decoration: InputDecoration(
@@ -107,12 +107,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 TextFormField(
                   obscureText: true,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     labelText: "Password",
                     hintText: "Enter your Password",
                     prefixIcon: Icon(
                       Icons.lock,
                       color: primaryColor,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
                     )
                   ),
                   validator: (value) {

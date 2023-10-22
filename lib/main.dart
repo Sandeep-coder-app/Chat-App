@@ -1,16 +1,16 @@
-import 'package:chat_app/Helper/helper_func.dart';
-import 'package:chat_app/Pages/home_page.dart';
-import 'package:chat_app/Widget/constants.dart';
+import 'package:chat_app/Screen/home_page.dart';
+import 'package:chat_app/Widget/constanst.dart';
 import 'package:chat_app/auth/login_page.dart';
 import 'package:chat_app/firebase_options.dart';
+import 'package:chat_app/helper/helper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   runApp(const MyApp());
 }
 
@@ -27,19 +27,18 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    getUserLoggedInStatus();
+    // getUserLoggedInStatus();
   }
 
-  getUserLoggedInStatus() async {
-    await Helper.getUserLoggedInStatus().then((value) {
-      if(value != null) {
-        setState(() {
-          isSignedIn = value;
-        });
-      }
-    });
-  }
-
+  // getUserLoggedInStatus() async {
+  //   await Helper.getUserLoggedInStatus().then((value) {
+  //     if(value != null) {
+  //       setState(() {
+  //         isSignedIn = value;
+  //       });
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

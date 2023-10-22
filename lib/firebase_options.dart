@@ -44,37 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAQ1-a1amViQaLaQ4tBRNDRLZpxIHszRC4',
-    appId: '1:427397123773:web:f02f5f004ef5a5c039b1d4',
-    messagingSenderId: '427397123773',
-    projectId: 'chatapps-c31d9',
-    authDomain: 'chatapps-c31d9.firebaseapp.com',
-    storageBucket: 'chatapps-c31d9.appspot.com',
+    apiKey: 'AIzaSyD5FquhjSQPHpuLqXvd8w2_5eX84yWB1Ss',
+    appId: '1:387151914000:web:22c114f94e5f2094135695',
+    messagingSenderId: '387151914000',
+    projectId: 'chatsapp-de892',
+    authDomain: 'chatsapp-de892.firebaseapp.com',
+    storageBucket: 'chatsapp-de892.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBbzjlToHxz-rwcogXI6GoCKWg8GogbNSs',
-    appId: '1:427397123773:android:f3970dd33bc7f19339b1d4',
-    messagingSenderId: '427397123773',
-    projectId: 'chatapps-c31d9',
-    storageBucket: 'chatapps-c31d9.appspot.com',
+    apiKey: 'AIzaSyDyp1knVnD3DkA7D9Uc0Ar8MufnL8KL3xE',
+    appId: '1:387151914000:android:78f93e28b403716c135695',
+    messagingSenderId: '387151914000',
+    projectId: 'chatsapp-de892',
+    storageBucket: 'chatsapp-de892.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyACo2cg2oG-UZEn78LRq8SQbe6edKj-sPI',
-    appId: '1:427397123773:ios:aa24adb57422a0a139b1d4',
-    messagingSenderId: '427397123773',
-    projectId: 'chatapps-c31d9',
-    storageBucket: 'chatapps-c31d9.appspot.com',
+    apiKey: 'AIzaSyDBpbx0zJI41Fc-4pOt_9IMVVuKn0DThXo',
+    appId: '1:387151914000:ios:cf590407b9d4acca135695',
+    messagingSenderId: '387151914000',
+    projectId: 'chatsapp-de892',
+    storageBucket: 'chatsapp-de892.appspot.com',
     iosBundleId: 'com.example.chatApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyACo2cg2oG-UZEn78LRq8SQbe6edKj-sPI',
-    appId: '1:427397123773:ios:30089765ca811a1639b1d4',
-    messagingSenderId: '427397123773',
-    projectId: 'chatapps-c31d9',
-    storageBucket: 'chatapps-c31d9.appspot.com',
+    apiKey: 'AIzaSyDBpbx0zJI41Fc-4pOt_9IMVVuKn0DThXo',
+    appId: '1:387151914000:ios:68d593add2485411135695',
+    messagingSenderId: '387151914000',
+    projectId: 'chatsapp-de892',
+    storageBucket: 'chatsapp-de892.appspot.com',
     iosBundleId: 'com.example.chatApp.RunnerTests',
   );
 }

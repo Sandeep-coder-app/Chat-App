@@ -27,18 +27,18 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    // getUserLoggedInStatus();
+     getUserLoggedInStatus();
   }
 
-  // getUserLoggedInStatus() async {
-  //   await Helper.getUserLoggedInStatus().then((value) {
-  //     if(value != null) {
-  //       setState(() {
-  //         isSignedIn = value;
-  //       });
-  //     }
-  //   });
-  // }
+  getUserLoggedInStatus() async {
+    await Helper.getUserLoggedInStatus().then((value) {
+      if(value != null) {
+        setState(() {
+          isSignedIn = value;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

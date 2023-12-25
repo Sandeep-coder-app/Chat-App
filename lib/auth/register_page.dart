@@ -142,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(20),
                               color: primaryColor),
                           child: const Text(
-                            "Sign In",
+                            "Sign up",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.white,
@@ -155,14 +155,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: 10,
                       ),
                       Text.rich(TextSpan(
-                        text: "Don't have an account? ",
+                        text: "Already have an account? ",
                         style:
                             const TextStyle(color: Colors.black, fontSize: 14),
                         children: <TextSpan>[
                           TextSpan(
                               text: "Login now",
                               style: const TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.blue,
                                   decoration: TextDecoration.underline),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {

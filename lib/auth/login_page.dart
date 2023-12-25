@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                           TextSpan(
                               text: "Register here",
                               style: const TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.blue,
                                   decoration: TextDecoration.underline),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
